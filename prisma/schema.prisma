@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define o modelo de usuário
+model User {
+  id            Int         @id @default(autoincrement())
+  name          String
+  email         String      @unique
+  password      String
+  // Relacionamento um-para-um com as estatísticas diárias do usuário
+  dailyStats    DailyStats?
+  // Relacionamento um-para-muitos com as refeições do usuário
+  meals         Meal[]
+  // Relacionamento muitos-para-muitos com os alimentos favoritos do usuário
+  favoriteFoods Food[]      @relation("FavoriteFoods")
+}
+
+// Define o modelo de estatísticas diárias do usuário
+model DailyStats {
+  id               Int      @id @default(autoincrement())
+  user             User     @relation(fields: [userId], references: [id])
+  userId           Int      @unique
+  date             DateTime
+  dailyCalories    Int
+  weeklyWeightLoss Float
+}
+
+// Define o modelo de alimento
+model Food {
+  id          Int     @id @default(autoincrement())
+  name        String
+  calories    Int
+  servingSize String
+  imageUrl    String?
+  // Relacionamento muitos-para-muitos com as refeições
+  meals       Meal[]  @relation("MealFoods")
+  // Relacionamento muitos-para-muitos com os usuários que favoritaram o alimento
+  users       User[]  @relation("FavoriteFoods")
+}
+
+// Define o modelo de refeição
+model Meal {
+  id            Int      @id @default(autoincrement())
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+  date          DateTime
+  time          String
+  totalCalories Int
+  // Relacionamento muitos-para-muitos com os alimentos
+  foods         Food[]   @relation("MealFoods")
+}
+
+// Define o modelo de receita
+model Recipe {
+  id          Int          @id @default(autoincrement())
+  title       String
+  description String
+  ingredients Ingredient[]
+}
+
+// Define o modelo de ingrediente
+model Ingredient {
+  id       Int    @id @default(autoincrement())
+  name     String
+  quantity String
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId Int
+}
