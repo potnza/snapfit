@@ -5,7 +5,7 @@ import { Mail } from "lucide-react"
 
 const Header = () => {
     return (
-        <div className="fixed top-0 w-full h-10 bg-gradient-to-r from-green-900 to-green-900 via-green-900 shadow">
+        <div className="fixed top-0 w-full h-10 bg-gradient-to-br from-green-20 from-100% to-green-10 from-40% shadow">
             <div className="flex justify-center items-center">
                 <h1 className="text-white text-[15px] font-bold mt-2">Entrar</h1>
             </div>  
@@ -15,7 +15,7 @@ const Header = () => {
 
 const Login = () => {
     return (
-        <><div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-green-600 from-10% via-green-800 to-green-900">
+        <><div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-green-20 from-100% to-green-10 from-15%">
             <Header />
             <div className="mt-[-70px] w-80">
                 <img src="snap-logo2.png" alt="" />
