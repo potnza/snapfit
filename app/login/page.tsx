@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Mail } from "lucide-react"
+import { Mail } from "lucide-react";
+import  Link  from 'next/link';
 
 const Header = () => {
     return (
@@ -47,13 +48,14 @@ const Login = () => {
                     <div className="w-6 h-5 text-white text-[15px] text-sm mx-2">OU</div>
                     <div className="w-[177px] h-[0px] origin-top-left border border-white border-opacity-50"></div>
                 </div>
-            </div>
-           
-            <div className="mt-7">
-                <Button className="w-[349px] h-[46px] bg-white rounded-[25px] text-black">
-                    <Mail className="mr-2 h-4 w-4" /> Login with Email
-                </Button>
-            </div>
+            </div>           
+        <div className="mt-7">
+                <Link href="http://localhost:3000/cadastro">
+            <Button className="w-[349px] h-[46px] bg-white rounded-[25px] text-black">
+                <Mail className="mr-2 h-4 w-4" /> Cadastre-se
+            </Button>
+                </Link>
+        </div>
             <div className="mt-5">
                 <Button className="w-[349px] h-[46px] bg-white rounded-[25px] text-black">
                     <Mail className="mr-2 h-4 w-4" /> Login with Email
