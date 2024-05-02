@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import AuthActions from "@/modules/auth/actions/auth-actions";
 
 
 const Header = () => {
@@ -26,37 +27,33 @@ const Login = () => {
             <div className="mt-[-200px] w-80">
                 <img src="snap-logo2.png" alt="" />
             </div>
+        <form action={AuthActions.createAccount}>
             <div className="">
                 <div>
-                    <Input
-                        type="email"
+                    <Input id="name" required name="name"
+                        type="name"
                         placeholder="Nome"
                         className="w-[349px] h-[46px] bg-white rounded-[25px]  mt-16 font-bold border-2 text-sm border-transparent focus:border-lime-400" />
 
                     <Input
-                        type="email"
+                        type="email" id="email" required name="email"
                         placeholder="E-mail"
                         className="w-[349px] h-[46px] bg-white rounded-[25px] mt-7 font-bold border-2 text-sm border-transparent focus:border-lime-400" />
                 </div>
                 <div>
                     <Input
-                        type="password"
+                        type="password" id="password" required name="password"
                         placeholder="Senha"
                         className="w-[349px] h-[46px] bg-white rounded-[25px]  mt-7 font-bold border-2 text-sm border-transparent focus:border-lime-400" />
-
-                    <Input
-                        type="password"
-                        placeholder="Repetir senha"
-                        className="w-[349px] h-[46px] bg-white rounded-[25px] mt-7 font-bold border-2 text-sm border-transparent focus:border-lime-400" />
                 </div>
             </div>
             <div>
-                <Button className="w-[349px] h-[46px] bg-lime-400 hover:bg-lime-500 rounded-[15px] text-sm mt-10 flex justify-center text-black font-extrabold">
+                <Button  type="submit" className="w-[349px] h-[46px] bg-lime-400 hover:bg-lime-500 rounded-[15px] text-sm mt-10 flex justify-center text-black font-extrabold">
                     Confirmar
                 </Button>
             </div>
             
-            
+        </form>
            
             
         </div>
